@@ -5,10 +5,18 @@
  */
 package ine5612.Controllers;
 
+import ine5612.Model.AuthenticationModel;
+import ine5612.View.LoginPanel;
+
 /**
  *
  * @author 16200923
  */
 public class LoginController {
+    AuthenticationModel authentication = new AuthenticationModel();
     
+    public boolean checkAuthentication (String username,String password){
+        return authentication.authenticationChecked(username,password);
+    }
 }
+
