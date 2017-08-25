@@ -18,5 +18,7 @@ public class LoginController {
     public boolean checkAuthentication (String username,String password){
         return authentication.authenticationChecked(username,password);
     }
+    
+ 
 }
 

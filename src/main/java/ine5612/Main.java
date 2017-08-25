@@ -14,9 +14,7 @@ public class Main
     public static void main( String[] args ) throws IOException
     {
       new MainFrame();
+             System.out.println( "Hello World!" );
     }
-    
-    public Main() {
-       System.out.println( "Hello World!" );
-    }
+
 }
