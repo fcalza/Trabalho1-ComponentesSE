@@ -5,6 +5,7 @@
  */
 package ine5612.Model;
 
+import ine5612.Controllers.LoginController;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
@@ -18,7 +19,8 @@ public class AuthenticationModel {
     
     private String username, password;
     private boolean isManager;
-    
+    LoginController loginController = new LoginController();
+
     public AuthenticationModel(){
         super();
     }
@@ -42,13 +44,15 @@ public class AuthenticationModel {
     public boolean authenticationChecked (String username, String password){
         String usernameT = "Vini";
         String passwordT = "123";
+        isManager = true;
         
-        if(usernameT == username && passwordT == password){
+        if(usernameT.equals(username) && passwordT.equals(password)){
             System.out.println("Login efetuado com sucesso");
-            return true;
+           
+            return loginController.resultAuthentication(true,isManager);
         } else {
             System.out.println("Login errado");
-            return false;
+            return loginController.resultAuthentication(false,isManager);
         }
     }
     

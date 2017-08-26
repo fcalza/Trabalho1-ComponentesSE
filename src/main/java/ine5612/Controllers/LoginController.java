@@ -19,6 +19,16 @@ public class LoginController {
         return authentication.authenticationChecked(username,password);
     }
     
+    public boolean resultAuthentication(boolean loginReseult, boolean isManager)    {
+        if(loginReseult){
+            
+            return loginReseult;
+        }else{
+            return loginReseult;
+        }
+        
+    }
+    
  
 }
 
