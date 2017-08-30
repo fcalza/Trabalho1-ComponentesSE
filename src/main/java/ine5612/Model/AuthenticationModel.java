@@ -16,44 +16,17 @@ import java.io.ObjectOutputStream;
     
 
 public class AuthenticationModel {
+    protected UserModel user;
     
-    private String username, password;
-    private boolean isManager;
-    LoginController loginController = new LoginController();
-
     public AuthenticationModel(){
-        super();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        user = new UserModel("Vini","123",true);
     }
     
     public boolean authenticationChecked (String username, String password){
-        String usernameT = "Vini";
-        String passwordT = "123";
-        isManager = true;
-        
-        if(usernameT.equals(username) && passwordT.equals(password)){
-            System.out.println("Login efetuado com sucesso");
-           
-            return loginController.resultAuthentication(true,isManager);
-        } else {
-            System.out.println("Login errado");
-            return loginController.resultAuthentication(false,isManager);
-        }
+        return this.user.getUsername().equals(username) && this.user.getPassword().equals(password);
     }
     
+    public Object userObject(){        
+        return this.user;
+    }
 }

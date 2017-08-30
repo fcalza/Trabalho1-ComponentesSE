@@ -13,20 +13,24 @@ import ine5612.View.LoginPanel;
  * @author 16200923
  */
 public class LoginController {
-    AuthenticationModel authentication = new AuthenticationModel();
+    AuthenticationModel authentication;
     
-    public boolean checkAuthentication (String username,String password){
-        return authentication.authenticationChecked(username,password);
+    public LoginController(){
+        authentication = new AuthenticationModel();
     }
     
-    public boolean resultAuthentication(boolean loginReseult, boolean isManager)    {
-        if(loginReseult){
-            
-            return loginReseult;
-        }else{
-            return loginReseult;
+    public String checkAuthentication (String username,String password){
+         if(authentication.authenticationChecked(username,password)){
+             authentication.userObject();
+             return "sada";
+         } else {
+             return "Não encontrado";
         }
+    }
+    
+    public boolean resultAuthentication()    {
         
+        return false;
     }
     
  
