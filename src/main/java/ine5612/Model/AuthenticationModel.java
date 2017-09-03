@@ -8,6 +8,7 @@ package ine5612.Model;
 import ine5612.Controllers.LoginController;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,11 +20,18 @@ public class AuthenticationModel {
     protected UserModel user;
     
     public AuthenticationModel(){
-        user = new UserModel("Vini","123",true);
+        user = new UserModel("vini","123",true);
     }
     
     public boolean authenticationChecked (String username, String password){
-        return this.user.getUsername().equals(username) && this.user.getPassword().equals(password);
+        if(this.user.getUsername().equalsIgnoreCase(username) && this.user.getPassword().equalsIgnoreCase(password)){
+        
+            return true;
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário incorreto");
+            return false;
+        }
     }
     
     public Object userObject(){        

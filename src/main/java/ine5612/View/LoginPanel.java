@@ -110,6 +110,10 @@ public class LoginPanel extends javax.swing.JPanel {
         String username = this.username.getText();
         String password = this.password.getText();
         loginController.checkAuthentication(username,password);
+        
+        
+           
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
 

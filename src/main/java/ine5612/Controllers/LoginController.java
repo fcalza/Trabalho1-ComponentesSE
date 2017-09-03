@@ -7,6 +7,7 @@ package ine5612.Controllers;
 
 import ine5612.Model.AuthenticationModel;
 import ine5612.View.LoginPanel;
+import ine5612.View.MainFrame;
 
 /**
  *
@@ -14,7 +15,7 @@ import ine5612.View.LoginPanel;
  */
 public class LoginController {
     AuthenticationModel authentication;
-    
+    MainFrame mainframe;
     public LoginController(){
         authentication = new AuthenticationModel();
     }
@@ -22,15 +23,18 @@ public class LoginController {
     public String checkAuthentication (String username,String password){
          if(authentication.authenticationChecked(username,password)){
              authentication.userObject();
+             MainFrame mainframe = new MainFrame(1);//1 comandaPanel
+             mainframe.ComamandPanel();
              return "sada";
          } else {
-             return "Não encontrado";
+             
+             return "No encontrado";
         }
     }
     
     public boolean resultAuthentication()    {
         
-        return false;
+        return true;
     }
     
  
