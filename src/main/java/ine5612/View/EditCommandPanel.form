@@ -42,7 +42,7 @@
                                           <Component id="jLabel1" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="finalyzeCommand" max="32767" attributes="0"/>
+                                  <Component id="receivePayment" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -78,7 +78,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="priceComanda" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="finalyzeCommand" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="receivePayment" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -197,12 +197,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="priceComanda">
     </Component>
-    <Component class="javax.swing.JButton" name="finalyzeCommand">
+    <Component class="javax.swing.JButton" name="receivePayment">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Finalizar comanda"/>
+        <Property name="text" type="java.lang.String" value="Receber pagamento"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalyzeCommandActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receivePaymentActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

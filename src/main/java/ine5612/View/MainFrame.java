@@ -1,5 +1,7 @@
 package ine5612.View;
 
+import ine5612.Controllers.CommandController;
+import ine5612.Controllers.FuncionaryController;
 import ine5612.Controllers.LoginController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -58,7 +60,7 @@ public class MainFrame extends JFrame {
 
     }*/
     public void EditCommandPanel() {
-        this.add(new EditCommandPanel());
+        this.add(new EditCommandPanel(new CommandController()));
         this.pack();
         this.show();
         setTitle("Comanda - Editar");

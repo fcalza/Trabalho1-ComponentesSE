@@ -25,7 +25,7 @@ public class LoginController implements LoginControlerInterface {
     public String checkAuthentication (String username,String password){
          if(authentication.authenticationChecked(username,password)){
              authentication.userObject();
-             MainFrame mainframe = new MainFrame(1);//1 comandaPanel
+             mainframe = new MainFrame(1);//1 comandaPanel
              mainframe.ComamandPanel();
              return "sada";
          } else {

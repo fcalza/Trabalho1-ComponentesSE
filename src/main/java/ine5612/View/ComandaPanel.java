@@ -5,6 +5,7 @@
  */
 package ine5612.View;
 
+import ine5612.Controllers.CommandController;
 import ine5612.Controllers.FuncionaryController;
 import ine5612.Controllers.ManagerController;
 import ine5612.Model.UserModel;
@@ -16,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Calza
  */
 public class ComandaPanel extends javax.swing.JPanel {
+
     FuncionaryController funcionaryController;
     ManagerController managerController;
-    
+    CommandController commandController;
+
     /**
      * Creates new form ComandaPanel
      */
@@ -39,6 +42,7 @@ public class ComandaPanel extends javax.swing.JPanel {
         clienteTable = new javax.swing.JTable();
         editCommand = new javax.swing.JButton();
         closeCommandPanel = new javax.swing.JButton();
+        finalyzeCommand = new javax.swing.JButton();
 
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,6 +81,8 @@ public class ComandaPanel extends javax.swing.JPanel {
             }
         });
 
+        finalyzeCommand.setText("Finalizar comanda");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,23 +90,27 @@ public class ComandaPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(closeCommandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editCommand, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeCommandPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finalyzeCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editCommand)
-                        .addGap(123, 123, 123)
-                        .addComponent(closeCommandPanel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                        .addGap(87, 87, 87)
+                        .addComponent(finalyzeCommand)
+                        .addGap(36, 36, 36)))
+                .addGap(5, 5, 5)
+                .addComponent(closeCommandPanel)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,24 +124,25 @@ public class ComandaPanel extends javax.swing.JPanel {
         int selectedRow = clienteTable.getSelectedRow();
         //abrir uma comanda para adicionar itens
         DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
-        if(selectedRow==-1){
+        if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Selecione a comanda de um cliente");
-        }else{
-                    new ManagerController();
+        } else {
+            commandController = new CommandController();
+            commandController.openEditCommand();
         }
 
         //if(){//se for gerente
-              //new ManagerController();
+        //new ManagerController();
         //}else{//se for funcionario
-            
         //}
     }//GEN-LAST:event_editCommandActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable clienteTable;
     private javax.swing.JButton closeCommandPanel;
     private javax.swing.JButton editCommand;
+    private javax.swing.JButton finalyzeCommand;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

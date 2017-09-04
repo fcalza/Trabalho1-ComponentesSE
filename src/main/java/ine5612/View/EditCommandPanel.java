@@ -5,6 +5,8 @@
  */
 package ine5612.View;
 
+import ine5612.Controllers.CommandController;
+import ine5612.Controllers.FuncionaryController;
 import javax.accessibility.AccessibleRole;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -16,12 +18,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditCommandPanel extends javax.swing.JPanel {
 
-    int sum;
-
+    
+    CommandController commandController;
     /**
      * Creates new form ManagerPanel
      */
-    public EditCommandPanel() {
+    public EditCommandPanel(CommandController commandController) {
+        this.commandController = commandController;
         initComponents();
     }
 
@@ -42,7 +45,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
         removeFromCommand = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         priceComanda = new javax.swing.JLabel();
-        finalyzeCommand = new javax.swing.JButton();
+        receivePayment = new javax.swing.JButton();
 
         produtosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,10 +104,10 @@ public class EditCommandPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Valor total da comanda: ");
 
-        finalyzeCommand.setText("Finalizar comanda");
-        finalyzeCommand.addActionListener(new java.awt.event.ActionListener() {
+        receivePayment.setText("Receber pagamento");
+        receivePayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finalyzeCommandActionPerformed(evt);
+                receivePaymentActionPerformed(evt);
             }
         });
 
@@ -134,7 +137,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(removeFromCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(finalyzeCommand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(receivePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,7 +162,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(priceComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(finalyzeCommand, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(receivePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)))
                 .addContainerGap())
         );
@@ -177,10 +180,13 @@ public class EditCommandPanel extends javax.swing.JPanel {
         
             //AQUI SÓ TÁ PEGANDO UMA COLUNA, objeto com só um []
         for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                model.addRow(new Object[]{produtosTable.getValueAt(rowsSelected[i], colsSelected[j])});
-                priceComanda.setText(Integer.toString(getSum())); //deve atualiar o preço total da comanda no textfild priceComanda
-            }
+                model.addRow(new Object[]{
+                    produtosTable.getValueAt(rowsSelected[i], 0),
+                        produtosTable.getValueAt(rowsSelected[i], 1)
+                });
+                
+      // priceComanda.setText(Integer.toString(commandController.getSum())); //deve atualiar o preço total da comanda no textfild priceComanda
+            
         }
     }//GEN-LAST:event_addToCommandActionPerformed
 
@@ -190,45 +196,39 @@ public class EditCommandPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
         if(comandaTable.getRowCount()==0){
             JOptionPane.showMessageDialog(null, "Comanda vazia");
-        }else{
+        }else if(comandaTable.getSelectedRow()>=0){
             model.removeRow(comandaTable.getSelectedRow());
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para ser removido");
         }
   
     }//GEN-LAST:event_removeFromCommandActionPerformed
 
     //remover todos os valores da comanda
-    private void finalyzeCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalyzeCommandActionPerformed
+    private void receivePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivePaymentActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
         if(comandaTable.getRowCount()==0){
             JOptionPane.showMessageDialog(null, "Comanda vazia");
         }else{
-            JOptionPane.showMessageDialog(null, this.getSum());
+           // JOptionPane.showMessageDialog(null, funcionaryController.getSum());
+            
             comandaTable.removeAll();
         }
-    }//GEN-LAST:event_finalyzeCommandActionPerformed
+    }//GEN-LAST:event_receivePaymentActionPerformed
 
-    //SOMAR VALORES DA COMANDA
-    public int getSum() {
-        int rowCount = comandaTable.getRowCount();
 
-        for (int i = 0; i < rowCount; i++) {
-            sum += Integer.parseInt(comandaTable.getValueAt(i, 1).toString());
-        }
-
-        return sum;
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCommand;
     private javax.swing.JTable comandaTable;
-    private javax.swing.JButton finalyzeCommand;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel priceComanda;
     private javax.swing.JTable produtosTable;
+    private javax.swing.JButton receivePayment;
     private javax.swing.JButton removeFromCommand;
     // End of variables declaration//GEN-END:variables
 }

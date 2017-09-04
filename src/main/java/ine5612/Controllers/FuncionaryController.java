@@ -7,6 +7,7 @@ package ine5612.Controllers;
 
 import ine5612.Model.UserModel;
 import ine5612.View.MainFrame;
+import ine5612.View.EditCommandPanel;
 
 /**
  *
@@ -17,7 +18,10 @@ public class FuncionaryController {
     
     public FuncionaryController(){
         //if(user.isManager()==false)
-            MainFrame mainFrame = new MainFrame(3);
-            mainFrame.EditCommandPanel();
+          
     }
+    
+    /*
+
+    }*/
 }

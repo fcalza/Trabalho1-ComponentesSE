@@ -35,6 +35,7 @@ public class AuthenticationModel implements AuthenticationModelInterface {
             
         }else{
             JOptionPane.showMessageDialog(null, "Usuário incorreto");
+            //throw new ModelException();
             return false;
         }
     }
