@@ -5,6 +5,7 @@
  */
 package ine5612.Model;
 
+import ine5612.Interface.AuthenticationModelInterface;
 import ine5612.Controllers.LoginController;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -16,13 +17,17 @@ import javax.swing.JOptionPane;
  */
     
 
-public class AuthenticationModel {
+public class AuthenticationModel implements AuthenticationModelInterface {
     protected UserModel user;
     
     public AuthenticationModel(){
-        user = new UserModel("vini","123",true);
+        // criar ModelFuncionario e ModelGerente
+        
+        user = new UserModel("vini","123",true); //true - gerente
+       // user = new UserModel("calza","123",false); // false - funcionario
     }
     
+    @Override
     public boolean authenticationChecked (String username, String password){
         if(this.user.getUsername().equalsIgnoreCase(username) && this.user.getPassword().equalsIgnoreCase(password)){
         
@@ -34,6 +39,7 @@ public class AuthenticationModel {
         }
     }
     
+    @Override
     public Object userObject(){        
         return this.user;
     }

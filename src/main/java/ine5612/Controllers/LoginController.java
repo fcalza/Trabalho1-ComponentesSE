@@ -5,6 +5,7 @@
  */
 package ine5612.Controllers;
 
+import ine5612.Interface.LoginControlerInterface;
 import ine5612.Model.AuthenticationModel;
 import ine5612.View.LoginPanel;
 import ine5612.View.MainFrame;
@@ -13,13 +14,14 @@ import ine5612.View.MainFrame;
  *
  * @author 16200923
  */
-public class LoginController {
+public class LoginController implements LoginControlerInterface {
     AuthenticationModel authentication;
     MainFrame mainframe;
     public LoginController(){
         authentication = new AuthenticationModel();
     }
     
+    @Override
     public String checkAuthentication (String username,String password){
          if(authentication.authenticationChecked(username,password)){
              authentication.userObject();
@@ -32,6 +34,7 @@ public class LoginController {
         }
     }
     
+    @Override
     public boolean resultAuthentication()    {
         
         return true;

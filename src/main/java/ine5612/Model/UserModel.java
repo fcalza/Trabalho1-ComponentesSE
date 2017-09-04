@@ -14,6 +14,8 @@ public class UserModel {
     private String password;
     private boolean isManager;
     
+    
+    //subistituir por map
     public UserModel(String usarname, String password, boolean isManager){
         this.username = usarname;
         this.password = password;
