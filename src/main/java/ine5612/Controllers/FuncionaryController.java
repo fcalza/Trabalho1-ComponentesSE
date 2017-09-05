@@ -17,8 +17,10 @@ public class FuncionaryController {
     UserModel user;
     
     public FuncionaryController(){
-        //if(user.isManager()==false)
-          
+        /*if(user.isManager()==false){
+        
+        }else{}
+        */
     }
     
     /*

@@ -21,9 +21,9 @@
               <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="closeCommandPanel" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
-                  <Component id="editCommand" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
-                  <Component id="finalyzeCommand" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+                  <Component id="closeCommandPanelButton" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                  <Component id="editCommandButton" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+                  <Component id="finalyzeCommandButton" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
@@ -36,14 +36,14 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="202" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="editCommand" min="-2" max="-2" attributes="0"/>
+                      <Component id="editCommandButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="finalyzeCommand" min="-2" max="-2" attributes="0"/>
+                      <Component id="finalyzeCommandButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="closeCommandPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="closeCommandPanelButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -100,26 +100,29 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="editCommand">
+    <Component class="javax.swing.JButton" name="editCommandButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar Comanda"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCommandActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCommandButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="closeCommandPanel">
+    <Component class="javax.swing.JButton" name="closeCommandPanelButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeCommandPanelActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeCommandPanelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="finalyzeCommand">
+    <Component class="javax.swing.JButton" name="finalyzeCommandButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Finalizar comanda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalyzeCommandButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

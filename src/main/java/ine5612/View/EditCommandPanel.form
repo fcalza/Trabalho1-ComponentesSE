@@ -22,14 +22,14 @@
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="addToCommand" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="addToCommandButton" min="-2" pref="161" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="priceComanda" min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="priceComandaLabel" min="-2" pref="57" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -38,11 +38,11 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="removeFromCommand" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
+                                          <Component id="removeFromCommandButton" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="receivePayment" max="32767" attributes="0"/>
+                                  <Component id="receivePaymentButton" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -62,7 +62,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="addToCommand" min="-2" max="-2" attributes="0"/>
+                      <Component id="addToCommandButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -72,13 +72,13 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="removeFromCommand" min="-2" max="-2" attributes="0"/>
+                      <Component id="removeFromCommandButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="priceComanda" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="priceComandaLabel" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="receivePayment" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="receivePaymentButton" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -174,20 +174,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="addToCommand">
+    <Component class="javax.swing.JButton" name="addToCommandButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar &#xe0; comanda"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addToCommandActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addToCommandButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="removeFromCommand">
+    <Component class="javax.swing.JButton" name="removeFromCommandButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remover da comanda"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeFromCommandActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeFromCommandButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -195,14 +195,14 @@
         <Property name="text" type="java.lang.String" value="Valor total da comanda: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="priceComanda">
+    <Component class="javax.swing.JLabel" name="priceComandaLabel">
     </Component>
-    <Component class="javax.swing.JButton" name="receivePayment">
+    <Component class="javax.swing.JButton" name="receivePaymentButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Receber pagamento"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receivePaymentActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="receivePaymentButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -10,6 +10,7 @@ import ine5612.Controllers.FuncionaryController;
 import ine5612.Controllers.ManagerController;
 import ine5612.Model.UserModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +22,7 @@ public class ComandaPanel extends javax.swing.JPanel {
     FuncionaryController funcionaryController;
     ManagerController managerController;
     CommandController commandController;
-
+    JPanel panel;
     /**
      * Creates new form ComandaPanel
      */
@@ -40,9 +41,9 @@ public class ComandaPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         clienteTable = new javax.swing.JTable();
-        editCommand = new javax.swing.JButton();
-        closeCommandPanel = new javax.swing.JButton();
-        finalyzeCommand = new javax.swing.JButton();
+        editCommandButton = new javax.swing.JButton();
+        closeCommandPanelButton = new javax.swing.JButton();
+        finalyzeCommandButton = new javax.swing.JButton();
 
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,21 +68,26 @@ public class ComandaPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(clienteTable);
 
-        editCommand.setText("Editar Comanda");
-        editCommand.addActionListener(new java.awt.event.ActionListener() {
+        editCommandButton.setText("Editar Comanda");
+        editCommandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCommandActionPerformed(evt);
+                editCommandButtonActionPerformed(evt);
             }
         });
 
-        closeCommandPanel.setText("Fechar");
-        closeCommandPanel.addActionListener(new java.awt.event.ActionListener() {
+        closeCommandPanelButton.setText("Fechar");
+        closeCommandPanelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeCommandPanelActionPerformed(evt);
+                closeCommandPanelButtonActionPerformed(evt);
             }
         });
 
-        finalyzeCommand.setText("Finalizar comanda");
+        finalyzeCommandButton.setText("Finalizar comanda");
+        finalyzeCommandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalyzeCommandButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,9 +98,9 @@ public class ComandaPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(closeCommandPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(finalyzeCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(closeCommandPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finalyzeCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,24 +110,26 @@ public class ComandaPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(editCommand)
+                        .addComponent(editCommandButton)
                         .addGap(87, 87, 87)
-                        .addComponent(finalyzeCommand)
+                        .addComponent(finalyzeCommandButton)
                         .addGap(36, 36, 36)))
                 .addGap(5, 5, 5)
-                .addComponent(closeCommandPanel)
+                .addComponent(closeCommandPanelButton)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void closeCommandPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCommandPanelActionPerformed
+    private void closeCommandPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCommandPanelButtonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_closeCommandPanelActionPerformed
+                
+    }//GEN-LAST:event_closeCommandPanelButtonActionPerformed
 
-    private void editCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommandActionPerformed
+    private void editCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommandButtonActionPerformed
         // TODO add your handling code here:
         int selectedRow = clienteTable.getSelectedRow();
+        
         //abrir uma comanda para adicionar itens
         DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
         if (selectedRow == -1) {
@@ -135,14 +143,28 @@ public class ComandaPanel extends javax.swing.JPanel {
         //new ManagerController();
         //}else{//se for funcionario
         //}
-    }//GEN-LAST:event_editCommandActionPerformed
+    }//GEN-LAST:event_editCommandButtonActionPerformed
+
+    private void finalyzeCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalyzeCommandButtonActionPerformed
+        // TODO add your handling code here:
+            //somente gerente pode fazer
+            //if(userModel.isManager()){
+
+        
+            //remover coisas da comanda
+            //for(int i=comandaTable.getRowCount(); i>0;i--){
+            //    model.removeRow(i-1);}
+        
+           //desabilitar opções de adicionar mais coisas em uma comanda após o
+           //editCommandPanel.addToCommand.disable();
+    }//GEN-LAST:event_finalyzeCommandButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable clienteTable;
-    private javax.swing.JButton closeCommandPanel;
-    private javax.swing.JButton editCommand;
-    private javax.swing.JButton finalyzeCommand;
+    private javax.swing.JButton closeCommandPanelButton;
+    private javax.swing.JButton editCommandButton;
+    private javax.swing.JButton finalyzeCommandButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

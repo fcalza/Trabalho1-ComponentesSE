@@ -19,7 +19,7 @@ public class ManagerController {
 
     public ManagerController() {
         //if (user.isManager()) {
-            MainFrame mainFrame = new MainFrame(3);
+            MainFrame mainFrame = new MainFrame(3); //mianframe 3 = 
             mainFrame.EditCommandPanel();
        // }
     }

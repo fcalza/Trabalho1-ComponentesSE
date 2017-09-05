@@ -21,9 +21,11 @@ public class CommandController {
     }
 
     public double getSum(double sum) {
-       return sum;
+       
+        return sum;
 
     }
+
     
     
 }

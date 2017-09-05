@@ -7,6 +7,7 @@ package ine5612.View;
 
 import ine5612.Controllers.CommandController;
 import ine5612.Controllers.FuncionaryController;
+import ine5612.Model.UserModel;
 import javax.accessibility.AccessibleRole;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -18,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditCommandPanel extends javax.swing.JPanel {
 
-            double sum = 0;
-
+    double sum = 0;
     CommandController commandController;
+    UserModel userModel;
+    
     /**
      * Creates new form ManagerPanel
      */
@@ -42,11 +44,11 @@ public class EditCommandPanel extends javax.swing.JPanel {
         produtosTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         comandaTable = new javax.swing.JTable();
-        addToCommand = new javax.swing.JButton();
-        removeFromCommand = new javax.swing.JButton();
+        addToCommandButton = new javax.swing.JButton();
+        removeFromCommandButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        priceComanda = new javax.swing.JLabel();
-        receivePayment = new javax.swing.JButton();
+        priceComandaLabel = new javax.swing.JLabel();
+        receivePaymentButton = new javax.swing.JButton();
 
         produtosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,26 +91,26 @@ public class EditCommandPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(comandaTable);
 
-        addToCommand.setText("Adicionar à comanda");
-        addToCommand.addActionListener(new java.awt.event.ActionListener() {
+        addToCommandButton.setText("Adicionar à comanda");
+        addToCommandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToCommandActionPerformed(evt);
+                addToCommandButtonActionPerformed(evt);
             }
         });
 
-        removeFromCommand.setText("Remover da comanda");
-        removeFromCommand.addActionListener(new java.awt.event.ActionListener() {
+        removeFromCommandButton.setText("Remover da comanda");
+        removeFromCommandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeFromCommandActionPerformed(evt);
+                removeFromCommandButtonActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Valor total da comanda: ");
 
-        receivePayment.setText("Receber pagamento");
-        receivePayment.addActionListener(new java.awt.event.ActionListener() {
+        receivePaymentButton.setText("Receber pagamento");
+        receivePaymentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                receivePaymentActionPerformed(evt);
+                receivePaymentButtonActionPerformed(evt);
             }
         });
 
@@ -122,13 +124,13 @@ public class EditCommandPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(addToCommand, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addToCommandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(priceComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(priceComandaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -136,9 +138,9 @@ public class EditCommandPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(removeFromCommand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(removeFromCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(receivePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(receivePaymentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,27 +152,27 @@ public class EditCommandPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(addToCommand)))
+                        .addComponent(addToCommandButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(removeFromCommand)
+                        .addComponent(removeFromCommandButton)
                         .addGap(42, 42, 42)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(priceComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(priceComandaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(receivePayment, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(receivePaymentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     //ADICIONAR UM PRODUTO NA COMANDA
-    private void addToCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCommandActionPerformed
+    private void addToCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCommandButtonActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
 
@@ -178,64 +180,75 @@ public class EditCommandPanel extends javax.swing.JPanel {
         int numRows = produtosTable.getSelectedRowCount();
         int[] rowsSelected = produtosTable.getSelectedRows();
         int[] colsSelected = produtosTable.getSelectedColumns();
-        String soma ="0";
+
         for (int i = 0; i < numRows; i++) {
-                model.addRow(new Object[]{
-                    produtosTable.getValueAt(rowsSelected[i], 0),
-                        produtosTable.getValueAt(rowsSelected[i], 1)
-                        
-                    
-                });
-                sum += Double.parseDouble(produtosTable.getValueAt(rowsSelected[i], 1).toString());
-                
-             
+            model.addRow(new Object[]{
+                        produtosTable.getValueAt(rowsSelected[i], 0),
+                        produtosTable.getValueAt(rowsSelected[i], 1)});
+
+            sum += Double.parseDouble(produtosTable.getValueAt(rowsSelected[i], 1).toString());
+
         }
-        priceComanda.setText(Double.toString(sum));//deve atualiar o preço total da comanda no textfild priceComanda
+        priceComandaLabel.setText(Double.toString(sum));//deve atualiar o preço total da comanda no textfild priceComanda
         commandController.getSum(sum);
-
-        ;
-
-    }//GEN-LAST:event_addToCommandActionPerformed
+        
+    }//GEN-LAST:event_addToCommandButtonActionPerformed
 
     //"EDITAR" - REMOVER LINHAS DA COMANDA
-    private void removeFromCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCommandActionPerformed
+    private void removeFromCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCommandButtonActionPerformed
         // TODO add your handling code here:
+        //if(userModel.isManager()){
+        double attValue =0;
         DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
-        if(comandaTable.getRowCount()==0){
+        if (comandaTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Comanda vazia");
-        }else if(comandaTable.getSelectedRow()>=0){
-            model.removeRow(comandaTable.getSelectedRow());
-        }else{
+        } else if (comandaTable.getSelectedRow() >= 0) {
+                model.removeRow(comandaTable.getSelectedRow());
+                for(int i =0; i<comandaTable.getRowCount();i++){
+                attValue += Double.parseDouble(comandaTable.getValueAt(i, 1).toString());
+                }
+                sum = attValue;
+                priceComandaLabel.setText(Double.toString(sum));//
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para ser removido");
         }
-  
-    }//GEN-LAST:event_removeFromCommandActionPerformed
+        
+    }//GEN-LAST:event_removeFromCommandButtonActionPerformed
 
-    //remover todos os valores da comanda
-    private void receivePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivePaymentActionPerformed
+    //RECEBER PARTE DO PAGAMENTO - RECEBER TODO O PAGAMENTO É O FINALIZAR COMANDA
+    private void receivePaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivePaymentButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
-        if(comandaTable.getRowCount()==0){
+        
+        //if(userModel.isManager()){
+
+        
+        if (comandaTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Comanda vazia");
-        }else{
-           // JOptionPane.showMessageDialog(null, funcionaryController.getSum());
+        } else {
+            String Decrement = JOptionPane.showInputDialog(null, "VALOR TOTAL DA COMANDA"
+                    + "\n                R$:  "+commandController.getSum(sum)+"\n\n\n\n"
+                    + "INSIRA VALOR A SER PAGO");
+            sum = sum-Integer.parseInt(Decrement);
             
-            comandaTable.removeAll();
+ 
+                
+            priceComandaLabel.setText(Double.toString(sum));//
+
+
         }
-    }//GEN-LAST:event_receivePaymentActionPerformed
-
-
+        
+    }//GEN-LAST:event_receivePaymentButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addToCommand;
+    private javax.swing.JButton addToCommandButton;
     private javax.swing.JTable comandaTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel priceComanda;
+    private javax.swing.JLabel priceComandaLabel;
     private javax.swing.JTable produtosTable;
-    private javax.swing.JButton receivePayment;
-    private javax.swing.JButton removeFromCommand;
+    private javax.swing.JButton receivePaymentButton;
+    private javax.swing.JButton removeFromCommandButton;
     // End of variables declaration//GEN-END:variables
 }
