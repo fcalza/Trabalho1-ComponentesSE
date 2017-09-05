@@ -20,16 +20,10 @@ public class CommandController {
         mainFrame.EditCommandPanel();
     }
 
-   /* public int getSum() {
-        int rowCount = comandaTable.getRowCount();
+    public double getSum(double sum) {
+       return sum;
 
-        for (int i = 0; i < rowCount; i++) {
-            sum += Integer.parseInt(comandaTable.getValueAt(i, 1).toString());
-        }
-
-        return sum;
-
-    }*/
-
+    }
+    
     
 }

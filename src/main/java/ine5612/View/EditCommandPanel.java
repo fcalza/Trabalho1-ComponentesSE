@@ -18,7 +18,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditCommandPanel extends javax.swing.JPanel {
 
-    
+            double sum = 0;
+
     CommandController commandController;
     /**
      * Creates new form ManagerPanel
@@ -177,17 +178,23 @@ public class EditCommandPanel extends javax.swing.JPanel {
         int numRows = produtosTable.getSelectedRowCount();
         int[] rowsSelected = produtosTable.getSelectedRows();
         int[] colsSelected = produtosTable.getSelectedColumns();
-        
-            //AQUI SÓ TÁ PEGANDO UMA COLUNA, objeto com só um []
+        String soma ="0";
         for (int i = 0; i < numRows; i++) {
                 model.addRow(new Object[]{
                     produtosTable.getValueAt(rowsSelected[i], 0),
                         produtosTable.getValueAt(rowsSelected[i], 1)
+                        
+                    
                 });
+                sum += Double.parseDouble(produtosTable.getValueAt(rowsSelected[i], 1).toString());
                 
-      // priceComanda.setText(Integer.toString(commandController.getSum())); //deve atualiar o preço total da comanda no textfild priceComanda
-            
+             
         }
+        priceComanda.setText(Double.toString(sum));//deve atualiar o preço total da comanda no textfild priceComanda
+        commandController.getSum(sum);
+
+        ;
+
     }//GEN-LAST:event_addToCommandActionPerformed
 
     //"EDITAR" - REMOVER LINHAS DA COMANDA
