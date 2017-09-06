@@ -5,6 +5,9 @@
  */
 package ine5612.Model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author 16200923
@@ -13,13 +16,15 @@ public class UserModel {
     private String username;
     private String password;
     private boolean isManager;
-    
-    
+    //private Map<String, UserModel> map;;
+
     //subistituir por map
     public UserModel(String usarname, String password, boolean isManager){
         this.username = usarname;
         this.password = password;
         this.isManager = isManager;
+        //this.map = new HashMap<String, UserModel>();
+
     }
     
     public String getUsername() {
