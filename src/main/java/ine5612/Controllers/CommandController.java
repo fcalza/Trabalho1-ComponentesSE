@@ -6,7 +6,6 @@
 package ine5612.Controllers;
 
 import ine5612.View.ComandaPanel;
-import ine5612.View.EditCommandPanel;
 import ine5612.View.MainFrame;
 
 /**
@@ -35,9 +34,9 @@ public class CommandController {
 
     }
 
-    public void AttClienteTabble() {
-        //comandaController = new ComandaController();
-        comandaPanel.setValueTabbleClient();
+    public void AtualyzeClienteTabble() {
+        //comandaPanel = new comandaPanel();
+       // comandaPanel.setValueTabbleClient();
     }
     
    
