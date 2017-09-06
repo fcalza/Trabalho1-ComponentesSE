@@ -22,6 +22,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
     double sum = 0;
     CommandController commandController;
     UserModel userModel;
+    DefaultTableModel modelComandaTable;
 
     /**
      * Creates new form ManagerPanel
@@ -186,15 +187,14 @@ public class EditCommandPanel extends javax.swing.JPanel {
     //ADICIONAR UM PRODUTO NA COMANDA
     private void addToCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCommandButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
-
+        modelComandaTable = (DefaultTableModel) comandaTable.getModel();
         int numCols = produtosTable.getSelectedColumnCount();
         int numRows = produtosTable.getSelectedRowCount();
         int[] rowsSelected = produtosTable.getSelectedRows();
         int[] colsSelected = produtosTable.getSelectedColumns();
 
         for (int i = 0; i < numRows; i++) {
-            model.addRow(new Object[]{
+            modelComandaTable.addRow(new Object[]{
                 produtosTable.getValueAt(rowsSelected[i], 0),
                 produtosTable.getValueAt(rowsSelected[i], 1)});
             sum = commandController.getSum();
@@ -211,18 +211,19 @@ public class EditCommandPanel extends javax.swing.JPanel {
         //if(userModel.isManager()){
         double updateValueAfterRemove = commandController.getSum();
         double difference = 0;
-        DefaultTableModel model = (DefaultTableModel) comandaTable.getModel();
         if (comandaTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Comanda vazia");
+
         } else if (comandaTable.getSelectedRow() >= 0) {
-            model.removeRow(comandaTable.getSelectedRow());
-            for (int i = 0; i < comandaTable.getRowCount(); i++) {
-                difference = Double.parseDouble(comandaTable.getValueAt(i, 1).toString());
-            }
-            updateValueAfterRemove = updateValueAfterRemove - difference; 
+            difference = Double.parseDouble(comandaTable.getValueAt(comandaTable.getSelectedRow(), 1).toString());
+            modelComandaTable.removeRow(comandaTable.getSelectedRow());
+            //for (int i = 0; i < comandaTable.getRowCount(); i++) {
+            //  difference = Double.parseDouble(comandaTable.getValueAt(comandaTable.getSelectedRow(), 1).toString());
+            //}
+            updateValueAfterRemove = updateValueAfterRemove - difference;
             commandController.setSum(updateValueAfterRemove);
-            
             priceComandaLabel.setText(Double.toString(commandController.getSum()));//
+
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para ser removido");
         }
@@ -236,18 +237,20 @@ public class EditCommandPanel extends javax.swing.JPanel {
         //if(userModel.isManager()){
         if (comandaTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Comanda vazia");
+        }else if (commandController.getSum()==0) {
+            JOptionPane.showMessageDialog(null, "VALOR TOTAL já foi pago");
         } else {
             sum = commandController.getSum();
             String decrement = JOptionPane.showInputDialog(null, "VALOR TOTAL DA COMANDA"
                     + "\n                R$:  " + sum + "\n\n\n\n"
                     + "INSIRA VALOR A SER PAGO:");
-            
+
             sum = sum - Integer.parseInt(decrement);
             commandController.setSum(sum);
             priceComandaLabel.setText(Double.toString(sum));//
 
         }
-        
+
 
     }//GEN-LAST:event_receivePaymentButtonActionPerformed
 

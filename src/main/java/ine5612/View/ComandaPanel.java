@@ -22,6 +22,7 @@ public class ComandaPanel extends javax.swing.JPanel {
     FuncionaryController funcionaryController;
     CommandController commandController;
     int selectedRow;
+    DefaultTableModel model;
 
     /**
      * Creates new form ComandaPanel
@@ -44,25 +45,25 @@ public class ComandaPanel extends javax.swing.JPanel {
         editCommandButton = new javax.swing.JButton();
         closeCommandPanelButton = new javax.swing.JButton();
         finalyzeCommandButton = new javax.swing.JButton();
+        addToClientTabbleButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nameClienteTextField = new javax.swing.JTextField();
+        nameFuncionaryTextField = new javax.swing.JTextField();
 
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null},
-                {"2", null},
-                {"3", null},
-                {"4", null},
-                {"5", null},
-                {"6", null}
+
             },
             new String [] {
-                "Comandas", "Valor R$"
+                "Comanda", "Atendente", "Valor R$"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false
+                true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -77,6 +78,7 @@ public class ComandaPanel extends javax.swing.JPanel {
         if (clienteTable.getColumnModel().getColumnCount() > 0) {
             clienteTable.getColumnModel().getColumn(0).setResizable(false);
             clienteTable.getColumnModel().getColumn(1).setResizable(false);
+            clienteTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         editCommandButton.setText("Editar Comanda");
@@ -100,37 +102,75 @@ public class ComandaPanel extends javax.swing.JPanel {
             }
         });
 
+        addToClientTabbleButton.setText("Adicionar comanda");
+        addToClientTabbleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToClientTabbleButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Cliente:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Atendente:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(closeCommandPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(finalyzeCommandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(editCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameClienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nameFuncionaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addToClientTabbleButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(closeCommandPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editCommandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finalyzeCommandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameClienteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameFuncionaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addToClientTabbleButton))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addComponent(editCommandButton)
-                        .addGap(87, 87, 87)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(finalyzeCommandButton)
-                        .addGap(36, 36, 36)))
-                .addGap(5, 5, 5)
-                .addComponent(closeCommandPanelButton)
-                .addContainerGap())
+                        .addGap(41, 41, 41)
+                        .addComponent(closeCommandPanelButton)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,7 +185,7 @@ public class ComandaPanel extends javax.swing.JPanel {
         selectedRow = clienteTable.getSelectedRow();
 
         //abrir uma comanda para adicionar itens
-        DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
+        model = (DefaultTableModel) clienteTable.getModel();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Selecione a comanda de um cliente");
         } else {
@@ -169,7 +209,7 @@ public class ComandaPanel extends javax.swing.JPanel {
         //somente gerente pode fazer
         //if(userModel.isManager()){
         double finalValue = 0;
-        DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
+        model = (DefaultTableModel) clienteTable.getModel();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Selecione a comanda de um cliente");
         } else {
@@ -177,7 +217,7 @@ public class ComandaPanel extends javax.swing.JPanel {
                 finalValue = commandController.getSum();
             }
             JOptionPane.showMessageDialog(null, "Comanda finalizada."
-                    + "\n\n Total: "+finalValue+ "\n", "Finalização de comanda", 1);
+                    + "\n\n Total: " + finalValue + "\n", "Finalização de comanda", 1);
 
         }
 
@@ -188,12 +228,31 @@ public class ComandaPanel extends javax.swing.JPanel {
         //editCommandPanel.addToCommand.disable();
     }//GEN-LAST:event_finalyzeCommandButtonActionPerformed
 
+    private void addToClientTabbleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToClientTabbleButtonActionPerformed
+        // TODO add your handling code here:
+        //String nome = userModel.getNome();
+        model = (DefaultTableModel) clienteTable.getModel();
+        if (!nameClienteTextField.getText().trim().equals("")) {
+            model.addRow(new Object[]{nameClienteTextField.getText(), nameFuncionaryTextField.getText()});
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Informe um cliente para iniciar a comanda");
+
+        }
+
+    }//GEN-LAST:event_addToClientTabbleButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToClientTabbleButton;
     private javax.swing.JTable clienteTable;
     private javax.swing.JButton closeCommandPanelButton;
     private javax.swing.JButton editCommandButton;
     private javax.swing.JButton finalyzeCommandButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nameClienteTextField;
+    private javax.swing.JTextField nameFuncionaryTextField;
     // End of variables declaration//GEN-END:variables
 }

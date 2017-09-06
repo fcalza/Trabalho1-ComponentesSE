@@ -28,8 +28,10 @@ public class CommandController {
         sum = sumVallue;
     }
     public double getSum() {
-       
-        return sum;
+       if(sum<0)
+           return sum=0.0; //com pagamentos e remover da comanda pode dar negativo
+       else 
+            return sum;
 
     }
 
