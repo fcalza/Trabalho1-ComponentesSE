@@ -11,6 +11,7 @@ import ine5612.Model.UserModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ine5612.View.MainFrame;
 
 /**
  *
@@ -21,6 +22,7 @@ public class ComandaPanel extends javax.swing.JPanel {
     FuncionaryController funcionaryController;
     CommandController commandController;
     int selectedRow;
+
     /**
      * Creates new form ComandaPanel
      */
@@ -60,7 +62,7 @@ public class ComandaPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -135,13 +137,13 @@ public class ComandaPanel extends javax.swing.JPanel {
     private void closeCommandPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCommandPanelButtonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-                
+
     }//GEN-LAST:event_closeCommandPanelButtonActionPerformed
 
     private void editCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommandButtonActionPerformed
         // TODO add your handling code here:
         selectedRow = clienteTable.getSelectedRow();
-        
+
         //abrir uma comanda para adicionar itens
         DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
         if (selectedRow == -1) {
@@ -156,24 +158,34 @@ public class ComandaPanel extends javax.swing.JPanel {
         //}else{//se for funcionario
         //}
     }//GEN-LAST:event_editCommandButtonActionPerformed
-    
-    public void setValueTabbleClient(){
-    
+
+    public void setValueTabbleClient() {
+        //TODO
         clienteTable.setValueAt(commandController.getSum(), selectedRow, 1);
     }
-    
+
     private void finalyzeCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalyzeCommandButtonActionPerformed
         // TODO add your handling code here:
-            //somente gerente pode fazer
-            //if(userModel.isManager()){
+        //somente gerente pode fazer
+        //if(userModel.isManager()){
+        double finalValue = 0;
+        DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione a comanda de um cliente");
+        } else {
+            if (commandController.getSum() != 0) {
+                finalValue = commandController.getSum();
+            }
+            JOptionPane.showMessageDialog(null, "Comanda finalizada."
+                    + "\n\n Total: "+finalValue+ "\n", "Finalização de comanda", 1);
 
-        
-            //remover coisas da comanda
-            //for(int i=comandaTable.getRowCount(); i>0;i--){
-            //    model.removeRow(i-1);}
-        
-           //desabilitar opções de adicionar mais coisas em uma comanda após o
-           //editCommandPanel.addToCommand.disable();
+        }
+
+        //remover coisas da comanda
+        //for(int i=comandaTable.getRowCount(); i>0;i--){
+        //    model.removeRow(i-1);}
+        //desabilitar opções de adicionar mais coisas em uma comanda após o
+        //editCommandPanel.addToCommand.disable();
     }//GEN-LAST:event_finalyzeCommandButtonActionPerformed
 
 

@@ -37,7 +37,7 @@ public class CommandController {
         //comandaController = new ComandaController();
         comandaPanel.setValueTabbleClient();
     }
-
     
+   
     
 }

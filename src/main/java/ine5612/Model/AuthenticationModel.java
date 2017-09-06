@@ -34,7 +34,7 @@ public class AuthenticationModel implements AuthenticationModelInterface {
             return true;
             
         }else{
-            JOptionPane.showMessageDialog(null, "Usuário incorreto");
+            JOptionPane.showMessageDialog(null,"Usuário não informado ou não cadastrado\n","Login no sistema", 1);
             //throw new ModelException();
             return false;
         }

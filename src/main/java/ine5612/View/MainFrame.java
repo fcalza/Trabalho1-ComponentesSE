@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame {
 
     static int valor = 0;
+	
+    //private static LoginPanel INSTANCE;
 
     public MainFrame() {
         super();
@@ -24,10 +26,10 @@ public class MainFrame extends JFrame {
 
     public MainFrame(int painel) {
 
-        if (painel == 1) {
+        if (painel == 1) {//painel 1 abre as comandas
             this.ComamandPanel();
         }
-        if (painel == 3) {
+        if (painel == 3) {//painel == 3 abre edição de uma das comandas
             this.EditCommandPanel();
         }
         valor++;
@@ -47,7 +49,7 @@ public class MainFrame extends JFrame {
         this.add(new ComandaPanel());
         this.pack();
         this.show();
-        setTitle("Comanda");
+        setTitle("Comandas");
         this.formWindowActivated();
         valor++;
 
@@ -79,5 +81,9 @@ public class MainFrame extends JFrame {
 
         // Move the window
         this.setLocation(x, y);
+    }
+    
+    public void dispo(){
+        this.dispose();
     }
 }
