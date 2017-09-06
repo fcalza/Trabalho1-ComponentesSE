@@ -7,7 +7,6 @@ package ine5612.View;
 
 import ine5612.Controllers.CommandController;
 import ine5612.Controllers.FuncionaryController;
-import ine5612.Controllers.ManagerController;
 import ine5612.Model.UserModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,9 +19,8 @@ import javax.swing.table.DefaultTableModel;
 public class ComandaPanel extends javax.swing.JPanel {
 
     FuncionaryController funcionaryController;
-    ManagerController managerController;
     CommandController commandController;
-    JPanel panel;
+    int selectedRow;
     /**
      * Creates new form ComandaPanel
      */
@@ -47,7 +45,7 @@ public class ComandaPanel extends javax.swing.JPanel {
 
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", ""},
+                {"1", null},
                 {"2", null},
                 {"3", null},
                 {"4", null},
@@ -55,18 +53,29 @@ public class ComandaPanel extends javax.swing.JPanel {
                 {"6", null}
             },
             new String [] {
-                "Comanda", "Valor"
+                "Comandas", "Valor R$"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(clienteTable);
+        if (clienteTable.getColumnModel().getColumnCount() > 0) {
+            clienteTable.getColumnModel().getColumn(0).setResizable(false);
+            clienteTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         editCommandButton.setText("Editar Comanda");
         editCommandButton.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +107,13 @@ public class ComandaPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(closeCommandPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(finalyzeCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(closeCommandPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(finalyzeCommandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editCommandButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +140,7 @@ public class ComandaPanel extends javax.swing.JPanel {
 
     private void editCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCommandButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = clienteTable.getSelectedRow();
+        selectedRow = clienteTable.getSelectedRow();
         
         //abrir uma comanda para adicionar itens
         DefaultTableModel model = (DefaultTableModel) clienteTable.getModel();
@@ -144,7 +156,12 @@ public class ComandaPanel extends javax.swing.JPanel {
         //}else{//se for funcionario
         //}
     }//GEN-LAST:event_editCommandButtonActionPerformed
-
+    
+    public void setValueTabbleClient(){
+    
+        clienteTable.setValueAt(commandController.getSum(), selectedRow, 1);
+    }
+    
     private void finalyzeCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalyzeCommandButtonActionPerformed
         // TODO add your handling code here:
             //somente gerente pode fazer

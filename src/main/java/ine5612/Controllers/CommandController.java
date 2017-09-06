@@ -5,6 +5,8 @@
  */
 package ine5612.Controllers;
 
+import ine5612.View.ComandaPanel;
+import ine5612.View.EditCommandPanel;
 import ine5612.View.MainFrame;
 
 /**
@@ -14,16 +16,26 @@ import ine5612.View.MainFrame;
 public class CommandController {
 
     MainFrame mainFrame;
-
+    ComandaPanel comandaPanel;
+    double sum;
+    
     public void openEditCommand() {
         mainFrame = new MainFrame(3);
         mainFrame.EditCommandPanel();
     }
-
-    public double getSum(double sum) {
+    
+    public void setSum(double sumVallue){
+        sum = sumVallue;
+    }
+    public double getSum() {
        
         return sum;
 
+    }
+
+    public void AttClienteTabble() {
+        //comandaController = new ComandaController();
+        comandaPanel.setValueTabbleClient();
     }
 
     

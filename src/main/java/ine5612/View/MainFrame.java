@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
     }
 
     public void loginPanel() {
-
+        
         this.add(new LoginPanel(new LoginController()));
         this.pack();
         this.show();
