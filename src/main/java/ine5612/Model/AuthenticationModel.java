@@ -23,7 +23,7 @@ public class AuthenticationModel implements AuthenticationModelInterface {
     public AuthenticationModel(){
         // criar ModelFuncionario e ModelGerente
         
-        user = new UserModel("vini","123",true); //true - gerente
+        user = new UserModel("vini","123",false); //true - gerente
        // user = new UserModel("calza","123",false); // false - funcionario
     }
     

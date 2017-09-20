@@ -208,7 +208,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
     //"EDITAR" - REMOVER LINHAS DA COMANDA
     private void removeFromCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCommandButtonActionPerformed
         // TODO add your handling code here:
-        //if(userModel.isManager()){
+        if(userModel.isManager()){
         double updateValueAfterRemove = commandController.getSum();
         double difference = 0;
         if (comandaTable.getRowCount() == 0) {
@@ -227,7 +227,7 @@ public class EditCommandPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para ser removido");
         }
-
+        }
     }//GEN-LAST:event_removeFromCommandButtonActionPerformed
 
     //RECEBER PARTE DO PAGAMENTO - RECEBER TODO O PAGAMENTO É O FINALIZAR COMANDA
